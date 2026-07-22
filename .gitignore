@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.pyc
+
+# Virtual environment
+venv/
+env/
+
+# Environment variables
+.env
+
+# Database
+instance/*.db
+
+# IDE
+.vscode/
+
+# Reports generated locally
+system_report.pdf

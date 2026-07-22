@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>C'est la vie  | Beyond Normal - 404 </title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='style.css') }}">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body
+
+data-cpu="{{cpu.usage}}"
+data-ram="{{ram.percent}}"
+data-used="{{storage[0].used if storage else 0}}"
+data-total="{{storage[0].total if storage else 0}}">
+
+<!-- ===========================================
+SIDEBAR
+=========================================== -->
+
+<aside class="sidebar">
+
+<div class="logo">
+
+<h2>
+<i class="fa-solid fa-shield-halved"></i>
+C'est la vie 
+</h2>
+
+<p> That's LIFE - The beats of mine. </p>
+
+</div>
+
+<nav>
+
+<a class="active">
+<i class="fa-solid fa-chart-line"></i>
+<span>Dashboard</span>
+</a>
+
+<a>
+<i class="fa-solid fa-microchip"></i>
+<span>Hardware</span>
+</a>
+
+<a>
+<i class="fa-solid fa-hard-drive"></i>
+<span>Storage</span>
+</a>
+
+<a>
+<i class="fa-solid fa-network-wired"></i>
+<span>Network</span>
+</a>
+
+<a>
+<i class="fa-solid fa-shield-virus"></i>
+<span>Security</span>
+</a>
+
+<a href="/report">
+<i class="fa-solid fa-file-lines"></i>
+<span>Reports</span>
+</a>
+
+</nav>
+
+<button id="themeToggle">
+Dark Mode
+</button>
+
+</aside>
+
+<!-- ===========================================
+MAIN CONTENT
+=========================================== -->
+
+<main class="main">
+
+<!-- TOPBAR -->
+
+<header class="topbar">
+
+<div>
+
+<h1>
+C'est la vie - 404
+</h1>
+
+<p>
+The Report card ..!!
+</p>
+
+</div>
+
+<div class="status">
+
+<div class="status-indicator">
+
+<span class="online"></span>
+
+Online
+
+</div>
+
+<div id="clock"></div>
+
+</div>
+
+</header>
+
+<!-- ===========================================
+HERO STATUS
+=========================================== -->
+
+<section class="hero-panel">
+
+<div class="hero-left">
+
+<h2>
+<i class="fa-solid fa-laptop-code"></i>
+System Overview
+</h2>
+
+<div class="hero-line"></div>
+
+<div class="hero-grid">
+
+<div>
+
+<label>Name</label>
+
+<p>
+DESKTOP-UVIULNA
+</p>
+
+</div>
+
+<div>
+
+<label>Status</label>
+
+<p class="green">
+🟢 Online
+</p>
+
+</div>
+
+<div>
+
+<label>Operating System</label>
+
+<p>
+{{system.os}}
+</p>
+
+</div>
+
+<div>
+
+<label>Machine</label>
+
+<p>
+{{system.machine}}
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="hero-right">
+
+<div class="live-clock">
+
+<i class="fa-solid fa-clock"></i>
+
+<div id="digitalClock"></div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ===========================================
+SYSTEM METRICS
+=========================================== -->
+
+<section class="metrics-grid">
+
+<div class="metric-card cpu">
+
+<div class="metric-icon">
+
+<i class="fa-solid fa-microchip"></i>
+
+</div>
+
+<div>
+
+<h4>CPU Usage</h4>
+
+<h2>{{cpu.usage}}%</h2>
+
+<p>Current Processor Load</p>
+
+</div>
+
+</div>
+
+<div class="metric-card ram">
+
+<div class="metric-icon">
+
+<i class="fa-solid fa-memory"></i>
+
+</div>
+
+<div>
+
+<h4>Memory Usage</h4>
+
+<h2>{{ram.percent}}%</h2>
+
+<p>Physical RAM</p>
+
+</div>
+
+</div>
+
+<div class="metric-card storage">
+
+<div class="metric-icon">
+
+<i class="fa-solid fa-hard-drive"></i>
+
+</div>
+
+<div>
+
+<h4>Storage</h4>
+
+{% if storage %}
+
+<h2>
+
+{{((storage[0].used/storage[0].total)*100)|round}}%
+
+</h2>
+
+<p>
+
+{{storage[0].used}}
+
+GB Used
+
+</p>
+
+{% endif %}
+
+</div>
+
+</div>
+
+<div class="metric-card network">
+
+<div class="metric-icon">
+
+<i class="fa-solid fa-network-wired"></i>
+
+</div>
+
+<div>
+
+<h4>Network</h4>
+
+<h2>ONLINE</h2>
+
+<p>
+
+{{network.ip}}
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ===========================================
+PERFORMANCE ANALYTICS
+=========================================== -->
+
+<section class="analytics-grid">
+
+<div class="analytics-card">
+
+<div class="card-header">
+
+<h3>
+
+<i class="fa-solid fa-chart-line"></i>
+
+CPU Performance
+
+</h3>
+
+</div>
+
+<canvas id="cpuChart"></canvas>
+
+</div>
+
+<div class="analytics-card">
+
+<div class="card-header">
+
+<h3>
+
+<i class="fa-solid fa-chart-area"></i>
+
+RAM Performance
+
+</h3>
+
+</div>
+
+<canvas id="ramChart"></canvas>
+
+</div>
+
+</section>
+
+<!-- ===========================================
+SYSTEM INFORMATION
+=========================================== -->
+
+<section class="system-section">
+
+<div class="section-title">
+
+<h2>
+
+<i class="fa-solid fa-desktop"></i>
+
+System Information
+
+</h2>
+
+</div>
+
+<div class="system-grid">
+
+<div class="system-card">
+
+<label>Operating System</label>
+
+<p>{{system.os}}</p>
+
+</div>
+
+<div class="system-card">
+
+<label>Version</label>
+
+<p>{{system.version}}</p>
+
+</div>
+
+<div class="system-card">
+
+<label>Processor</label>
+
+<p>{{cpu.processor}}</p>
+
+</div>
+
+<div class="system-card">
+
+<label>Architecture</label>
+
+<p>{{system.machine}}</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ===== PART 2 STARTS FROM HERE ===== -->
+
+<!-- ===========================================
+SECURITY OVERVIEW
+=========================================== -->
+
+<section class="security-grid">
+
+    <!-- Security Status -->
+
+    <div class="security-card">
+
+        <div class="section-title">
+
+            <h2>
+                <i class="fa-solid fa-shield-halved"></i>
+                Security Status
+            </h2>
+
+        </div>
+
+        <div class="security-wrapper">
+
+            <div class="circle-gauge">
+
+                <div class="circle-inner">
+
+                    <h1>98%</h1>
+
+                    <span>SECURE</span>
+
+                </div>
+
+            </div>
+
+            <div class="security-details">
+
+                <div class="status-row">
+
+                    <span>Firewall</span>
+
+                    <span class="success">
+                        <i class="fa-solid fa-circle-check"></i>
+                        Active
+                    </span>
+
+                </div>
+
+                <div class="status-row">
+
+                    <span>Windows Defender</span>
+
+                    <span class="success">
+                        <i class="fa-solid fa-circle-check"></i>
+                        Running
+                    </span>
+
+                </div>
+
+                <div class="status-row">
+
+                    <span>System Health</span>
+
+                    <span class="success">
+                        Normal
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Threat Level -->
+
+    <div class="threat-card">
+
+        <div class="section-title">
+
+            <h2>
+
+                <i class="fa-solid fa-triangle-exclamation"></i>
+
+                Threat Analysis
+
+            </h2>
+
+        </div>
+
+        <div class="threat-center">
+
+            <h1 class="low">
+
+                LOW
+
+            </h1>
+
+            <p>
+
+                No active threats detected
+
+            </p>
+
+        </div>
+
+        <div class="threat-bar">
+
+            <div class="threat-progress"></div>
+
+        </div>
+
+        <div class="threat-stats">
+
+            <div>
+
+                <h3>0</h3>
+
+                <small>Critical</small>
+
+            </div>
+
+            <div>
+
+                <h3>2</h3>
+
+                <small>Warnings</small>
+
+            </div>
+
+            <div>
+
+                <h3>12</h3>
+
+                <small>Protected</small>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ===========================================
+NETWORK ANALYTICS
+=========================================== -->
+
+<section class="analytics-card full-width">
+
+    <div class="card-header">
+
+        <h2>
+
+            <i class="fa-solid fa-chart-simple"></i>
+
+            Network Traffic
+
+        </h2>
+
+    </div>
+
+    <canvas id="networkChart"></canvas>
+
+</section>
+
+<!-- ===========================================
+LIVE PROCESS MONITOR
+=========================================== -->
+
+<section class="table-card">
+
+    <div class="table-header">
+
+        <h2>
+
+            <i class="fa-solid fa-gears"></i>
+
+            Live Process Monitor
+
+        </h2>
+
+        <input
+        type="text"
+        placeholder="Search Process..."
+        id="processSearch">
+
+    </div>
+
+    <div class="table-responsive">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>Process</th>
+
+                    <th>CPU %</th>
+
+                    <th>Status</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="processTable">
+
+                <tr>
+
+                    <td>Loading...</td>
+
+                    <td>--</td>
+
+                    <td>
+
+                        <span class="running">
+
+                            Running
+
+                        </span>
+
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+<!-- ===========================================
+INSTALLED SOFTWARE
+=========================================== -->
+
+<section class="table-card">
+
+    <div class="table-header">
+
+        <h2>
+
+            <i class="fa-solid fa-box"></i>
+
+            Installed Software
+
+        </h2>
+
+        <input
+
+        type="text"
+
+        id="softwareSearch"
+
+        placeholder="Search Software...">
+
+    </div>
+
+    <div class="table-responsive">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>Software</th>
+
+                    <th>Publisher</th>
+
+                    <th>Version</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="softwareTable">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+<!-- ===========================================
+SYSTEM SUMMARY
+=========================================== -->
+
+<section class="summary-grid">
+
+    <div class="summary-card">
+
+        <i class="fa-solid fa-computer"></i>
+
+        <h3>
+
+            {{system.machine}}
+
+        </h3>
+
+        <p>
+
+            Machine Type
+
+        </p>
+
+    </div>
+
+    <div class="summary-card">
+
+        <i class="fa-solid fa-memory"></i>
+
+        <h3>
+
+            {{ram.percent}}%
+
+        </h3>
+
+        <p>
+
+            RAM Utilization
+
+        </p>
+
+    </div>
+
+    <div class="summary-card">
+
+        <i class="fa-solid fa-microchip"></i>
+
+        <h3>
+
+            {{cpu.usage}}%
+
+        </h3>
+
+        <p>
+
+            CPU Utilization
+
+        </p>
+
+    </div>
+
+    <div class="summary-card">
+
+        <i class="fa-solid fa-network-wired"></i>
+
+        <h3>
+
+            {{network.ip}}
+
+        </h3>
+
+        <p>
+
+            Local IP Address
+
+        </p>
+
+    </div>
+
+</section>
+
+<!-- ===========================================
+FOOTER
+=========================================== -->
+
+<footer>
+
+    <div class="footer-left">
+
+        <h3>
+
+            <i class="fa-solid fa-shield-halved"></i>
+
+            C'est la vie 
+
+        </h3>
+
+        <p>
+
+             Tell me I'm ok.!!!
+
+        </p>
+
+    </div>
+
+    <div class="footer-right">
+
+        <p>
+
+            Flask • Python • HTML • CSS • JavaScript
+
+        </p>
+
+        <p>
+
+            © 2026 C'est la vie 
+
+        </p>
+
+    </div>
+
+</footer>
+
+</main>
+
+<script src="{{ url_for('static', filename='dashboard.js') }}"></script>
+
+</body>
+
+</html>

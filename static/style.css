@@ -1,0 +1,2753 @@
+/* ==========================================================
+   CYBER WATCH - PROFESSIONAL SOC DASHBOARD
+   PART 1
+   Variables • Reset • Body • Sidebar • Header • Hero
+========================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+:root{
+
+/* Colors */
+
+--bg:#020617;
+--bg2:#081227;
+--panel:rgba(15,23,42,.72);
+
+--cyan:#00F7FF;
+--blue:#2563EB;
+--purple:#9333EA;
+--green:#22C55E;
+--orange:#F97316;
+--red:#EF4444;
+
+--text:#F8FAFC;
+--text2:#CBD5E1;
+
+--border:rgba(0,247,255,.18);
+
+--shadow:
+0 0 25px rgba(0,247,255,.08);
+
+--glass:
+blur(20px);
+
+--radius:20px;
+
+--gradient:
+linear-gradient(
+135deg,
+#00F7FF,
+#2563EB
+);
+
+--gradient2:
+linear-gradient(
+135deg,
+#9333EA,
+#2563EB
+);
+
+}
+
+
+/* ===================================================== */
+
+*{
+
+margin:0;
+padding:0;
+box-sizing:border-box;
+
+}
+
+html{
+
+scroll-behavior:smooth;
+
+}
+
+body{
+
+font-family:"Inter",sans-serif;
+
+background:
+radial-gradient(circle at top,
+#102552,
+var(--bg));
+
+color:var(--text);
+
+overflow-x:hidden;
+
+}
+
+
+/* =====================================================
+BACKGROUND GRID
+===================================================== */
+
+body::before{
+
+content:"";
+
+position:fixed;
+
+inset:0;
+
+background-image:
+
+linear-gradient(
+rgba(0,247,255,.04) 1px,
+transparent 1px),
+
+linear-gradient(
+90deg,
+rgba(0,247,255,.04) 1px,
+transparent 1px);
+
+background-size:40px 40px;
+
+pointer-events:none;
+
+z-index:-1;
+
+}
+
+
+/* =====================================================
+SCROLLBAR
+===================================================== */
+
+::-webkit-scrollbar{
+
+width:8px;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+background:
+
+linear-gradient(
+
+var(--cyan),
+
+var(--blue)
+
+);
+
+border-radius:20px;
+
+}
+
+
+/* =====================================================
+SIDEBAR
+===================================================== */
+
+.sidebar{
+
+position:fixed;
+
+left:20px;
+top:20px;
+
+width:270px;
+
+height:calc(100vh - 40px);
+
+background:rgba(2,6,23,.82);
+
+backdrop-filter:blur(20px);
+
+border:
+
+1px solid rgba(0,247,255,.15);
+
+border-radius:25px;
+
+padding:25px;
+
+display:flex;
+
+flex-direction:column;
+
+justify-content:space-between;
+
+box-shadow:0 0 35px rgba(0,247,255,.08);
+
+}
+
+
+/* LOGO */
+
+.logo{
+
+text-align:center;
+
+margin-bottom:20px;
+
+}
+
+.logo h2{
+
+font-size:28px;
+
+font-weight:800;
+
+color:var(--cyan);
+
+text-shadow:
+
+0 0 20px var(--cyan);
+
+}
+
+.logo p{
+
+margin-top:8px;
+
+font-size:14px;
+
+color:var(--text2);
+
+}
+
+
+/* NAVIGATION */
+
+.sidebar nav{
+
+display:flex;
+
+flex-direction:column;
+
+gap:12px;
+
+}
+
+.sidebar nav a{
+
+display:flex;
+
+align-items:center;
+
+gap:15px;
+
+padding:15px 18px;
+
+border-radius:15px;
+
+text-decoration:none;
+
+color:#cbd5e1;
+
+font-weight:600;
+
+transition:.35s;
+
+cursor:pointer;
+
+}
+
+.sidebar nav a i{
+
+font-size:20px;
+
+width:24px;
+
+text-align:center;
+
+}
+
+.sidebar nav a:hover{
+
+background:
+
+rgba(0,247,255,.12);
+
+color:white;
+
+transform:translateX(8px);
+
+}
+
+.sidebar nav .active{
+
+background:
+
+linear-gradient(
+
+90deg,
+
+rgba(0,247,255,.18),
+
+rgba(37,99,235,.18)
+
+);
+
+border:
+
+1px solid rgba(0,247,255,.20);
+
+color:white;
+
+}
+
+
+/* BUTTON */
+
+#themeToggle{
+
+padding:15px;
+
+margin-top:20px;
+
+border:none;
+
+border-radius:15px;
+
+font-size:15px;
+
+font-weight:700;
+
+cursor:pointer;
+
+background:var(--gradient);
+
+color:white;
+
+transition:.35s;
+
+}
+
+#themeToggle:hover{
+
+transform:translateY(-3px);
+
+box-shadow:
+
+0 0 20px rgba(0,247,255,.4);
+
+}
+
+
+/* =====================================================
+MAIN
+===================================================== */
+
+.main{
+
+margin-left:310px;
+
+padding:35px;
+
+}
+
+
+/* =====================================================
+TOPBAR
+===================================================== */
+
+.topbar{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+margin-bottom:30px;
+
+}
+
+.topbar h1{
+
+font-size:34px;
+
+font-weight:800;
+
+}
+
+.topbar p{
+
+margin-top:6px;
+
+color:var(--text2);
+
+}
+
+.status{
+
+display:flex;
+
+align-items:center;
+
+gap:18px;
+
+}
+
+.status-indicator{
+
+display:flex;
+
+align-items:center;
+
+gap:10px;
+
+padding:12px 18px;
+
+border-radius:30px;
+
+background:rgba(15,23,42,.75);
+
+border:1px solid rgba(0,247,255,.15);
+
+}
+
+.online{
+
+width:12px;
+
+height:12px;
+
+border-radius:50%;
+
+background:#22c55e;
+
+box-shadow:
+
+0 0 15px #22c55e;
+
+animation:pulse 2s infinite;
+
+}
+
+#clock{
+
+font-weight:700;
+
+font-size:18px;
+
+}
+
+
+/* =====================================================
+HERO PANEL
+===================================================== */
+
+.hero-panel{
+
+display:grid;
+
+grid-template-columns:
+
+2fr 1fr;
+
+gap:30px;
+
+margin-bottom:35px;
+
+}
+
+.hero-left,
+
+.hero-right{
+
+background:rgba(15,23,42,.72);
+
+backdrop-filter:blur(20px);
+
+border:
+
+1px solid rgba(0,247,255,.15);
+
+border-radius:25px;
+
+padding:30px;
+
+box-shadow:0 0 30px rgba(0,247,255,.08);
+
+}
+
+.hero-left h2{
+
+display:flex;
+
+align-items:center;
+
+gap:10px;
+
+font-size:28px;
+
+color:var(--cyan);
+
+margin-bottom:15px;
+
+}
+
+.hero-line{
+
+height:2px;
+
+background:
+
+linear-gradient(
+
+90deg,
+
+var(--cyan),
+
+transparent
+
+);
+
+margin-bottom:25px;
+
+}
+
+.hero-grid{
+
+display:grid;
+
+grid-template-columns:
+
+repeat(2,1fr);
+
+gap:25px;
+
+}
+
+.hero-grid label{
+
+display:block;
+
+font-size:13px;
+
+color:#94a3b8;
+
+margin-bottom:8px;
+
+}
+
+.hero-grid p{
+
+font-size:18px;
+
+font-weight:700;
+
+}
+
+.green{
+
+color:#22c55e;
+
+}
+
+.live-clock{
+
+height:100%;
+
+display:flex;
+
+flex-direction:column;
+
+align-items:center;
+
+justify-content:center;
+
+}
+
+.live-clock i{
+
+font-size:70px;
+
+margin-bottom:20px;
+
+color:var(--cyan);
+
+text-shadow:0 0 20px var(--cyan);
+
+}
+
+#digitalClock{
+
+font-size:34px;
+
+font-weight:800;
+
+letter-spacing:2px;
+
+}
+
+/* ==========================================================
+   METRICS GRID
+========================================================== */
+
+.metrics-grid{
+
+display:grid;
+
+grid-template-columns:repeat(2,1fr);
+
+gap:30px;
+
+margin-bottom:35px;
+
+}
+
+
+/* ==========================================================
+   METRIC CARD
+========================================================== */
+
+.metric-card{
+
+position:relative;
+
+display:flex;
+
+align-items:center;
+
+gap:25px;
+
+padding:28px;
+
+background:rgba(15,23,42,.72);
+
+border:1px solid rgba(0,247,255,.15);
+
+border-radius:22px;
+
+backdrop-filter:blur(20px);
+
+overflow:hidden;
+
+transition:.35s;
+
+box-shadow:0 0 30px rgba(0,247,255,.08);
+
+}
+
+
+/* TOP GLOW */
+
+.metric-card::before{
+
+content:"";
+
+position:absolute;
+
+top:0;
+
+left:0;
+
+width:100%;
+
+height:4px;
+
+background:linear-gradient(
+90deg,
+var(--cyan),
+var(--blue)
+);
+
+}
+
+
+/* HOVER */
+
+.metric-card:hover{
+
+transform:translateY(-8px);
+
+border-color:rgba(0,247,255,.45);
+
+box-shadow:
+
+0 0 35px rgba(0,247,255,.25);
+
+}
+
+
+/* ==========================================================
+   ICON
+========================================================== */
+
+.metric-icon{
+
+width:80px;
+
+height:80px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+border-radius:20px;
+
+font-size:34px;
+
+background:
+
+linear-gradient(
+135deg,
+rgba(0,247,255,.18),
+rgba(37,99,235,.18)
+);
+
+color:var(--cyan);
+
+box-shadow:
+
+0 0 25px rgba(0,247,255,.20);
+
+flex-shrink:0;
+
+}
+
+
+/* ==========================================================
+   TEXT
+========================================================== */
+
+.metric-card h4{
+
+font-size:15px;
+
+font-weight:600;
+
+color:#94A3B8;
+
+margin-bottom:8px;
+
+letter-spacing:.5px;
+
+text-transform:uppercase;
+
+}
+
+
+.metric-card h2{
+
+font-size:36px;
+
+font-weight:800;
+
+margin-bottom:8px;
+
+color:white;
+
+}
+
+
+.metric-card p{
+
+font-size:15px;
+
+color:#CBD5E1;
+
+}
+
+
+/* ==========================================================
+   INDIVIDUAL CARD COLORS
+========================================================== */
+
+.metric-card.cpu::before{
+
+background:linear-gradient(
+90deg,
+#00F7FF,
+#2563EB
+);
+
+}
+
+.metric-card.ram::before{
+
+background:linear-gradient(
+90deg,
+#9333EA,
+#6366F1
+);
+
+}
+
+.metric-card.storage::before{
+
+background:linear-gradient(
+90deg,
+#F97316,
+#FACC15
+);
+
+}
+
+.metric-card.network::before{
+
+background:linear-gradient(
+90deg,
+#22C55E,
+#00F7FF
+);
+
+}
+
+
+/* ==========================================================
+   ICON COLORS
+========================================================== */
+
+.metric-card.cpu .metric-icon{
+
+color:#00F7FF;
+
+}
+
+.metric-card.ram .metric-icon{
+
+color:#A855F7;
+
+}
+
+.metric-card.storage .metric-icon{
+
+color:#F97316;
+
+}
+
+.metric-card.network .metric-icon{
+
+color:#22C55E;
+
+}
+
+
+/* ==========================================================
+   VALUE ANIMATION
+========================================================== */
+
+.metric-card h2{
+
+animation:fadeUp .8s ease;
+
+}
+
+
+/* ==========================================================
+   RESPONSIVE
+========================================================== */
+
+@media(max-width:1100px){
+
+.metrics-grid{
+
+grid-template-columns:1fr;
+
+}
+
+.metric-card{
+
+padding:22px;
+
+}
+
+.metric-icon{
+
+width:70px;
+
+height:70px;
+
+font-size:28px;
+
+}
+
+.metric-card h2{
+
+font-size:30px;
+
+}
+
+}
+
+@media(max-width:650px){
+
+.metric-card{
+
+flex-direction:column;
+
+text-align:center;
+
+gap:18px;
+
+}
+
+.metric-icon{
+
+margin-bottom:10px;
+
+}
+
+}
+
+/* ==========================================================
+   ANALYTICS SECTION
+   CPU + RAM PERFORMANCE CHARTS
+========================================================== */
+
+
+.analytics-grid{
+
+display:grid;
+
+grid-template-columns:repeat(2,1fr);
+
+gap:30px;
+
+margin-bottom:35px;
+
+}
+
+
+
+/* ==========================================================
+   ANALYTICS CARD
+========================================================== */
+
+
+.analytics-card{
+
+position:relative;
+
+padding:30px;
+
+min-height:350px;
+
+background:rgba(15,23,42,.72);
+
+border:
+
+1px solid rgba(0,247,255,.15);
+
+border-radius:25px;
+
+backdrop-filter:blur(20px);
+
+box-shadow:
+
+0 0 30px rgba(0,247,255,.08);
+
+transition:.35s;
+
+overflow:hidden;
+
+}
+
+
+
+/* TOP GLOW LINE */
+
+.analytics-card::before{
+
+content:"";
+
+position:absolute;
+
+top:0;
+
+left:0;
+
+width:100%;
+
+height:4px;
+
+background:
+
+linear-gradient(
+
+90deg,
+
+var(--cyan),
+
+var(--blue),
+
+var(--purple)
+
+);
+
+}
+
+
+
+/* HOVER EFFECT */
+
+.analytics-card:hover{
+
+transform:translateY(-8px);
+
+border-color:
+
+rgba(0,247,255,.45);
+
+box-shadow:
+
+0 0 40px rgba(0,247,255,.25);
+
+}
+
+
+
+/* ==========================================================
+   CARD HEADER
+========================================================== */
+
+
+.card-header{
+
+display:flex;
+
+align-items:center;
+
+justify-content:space-between;
+
+margin-bottom:25px;
+
+}
+
+
+
+.card-header h2,
+.card-header h3{
+
+display:flex;
+
+align-items:center;
+
+gap:12px;
+
+font-size:22px;
+
+font-weight:800;
+
+color:white;
+
+}
+
+
+
+.card-header i{
+
+color:var(--cyan);
+
+font-size:22px;
+
+text-shadow:
+
+0 0 15px var(--cyan);
+
+}
+
+
+
+/* ==========================================================
+   CHART AREA
+========================================================== */
+
+
+.analytics-card canvas{
+
+width:100% !important;
+
+height:260px !important;
+
+}
+
+
+
+/* ==========================================================
+   FULL WIDTH ANALYTICS
+   NETWORK CHART
+========================================================== */
+
+
+.full-width{
+
+width:100%;
+
+margin-top:35px;
+
+}
+
+
+
+/* ==========================================================
+   CHART GLOW COLORS
+========================================================== */
+
+
+#cpuChart{
+
+filter:
+
+drop-shadow(
+
+0 0 15px rgba(0,247,255,.25)
+
+);
+
+}
+
+
+
+#ramChart{
+
+filter:
+
+drop-shadow(
+
+0 0 15px rgba(168,85,247,.25)
+
+);
+
+}
+
+
+
+#networkChart{
+
+filter:
+
+drop-shadow(
+
+0 0 15px rgba(34,197,94,.25)
+
+);
+
+}
+
+
+
+/* ==========================================================
+   EMPTY / LOADING STATE
+========================================================== */
+
+
+.chart-loading{
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+height:250px;
+
+color:#94A3B8;
+
+font-size:18px;
+
+}
+
+
+
+/* ==========================================================
+   RESPONSIVE ANALYTICS
+========================================================== */
+
+
+@media(max-width:1100px){
+
+
+.analytics-grid{
+
+grid-template-columns:1fr;
+
+}
+
+
+.analytics-card{
+
+min-height:320px;
+
+}
+
+
+}
+
+
+@media(max-width:650px){
+
+
+.analytics-card{
+
+padding:20px;
+
+}
+
+
+.card-header h2,
+.card-header h3{
+
+font-size:18px;
+
+}
+
+
+.analytics-card canvas{
+
+height:220px !important;
+
+}
+
+
+}
+
+/* ==========================================================
+   SYSTEM INFORMATION SECTION
+========================================================== */
+
+
+.system-section{
+
+margin-bottom:35px;
+
+padding:30px;
+
+background:rgba(15,23,42,.72);
+
+border:
+
+1px solid rgba(0,247,255,.15);
+
+border-radius:25px;
+
+backdrop-filter:blur(20px);
+
+box-shadow:
+
+0 0 30px rgba(0,247,255,.08);
+
+}
+
+
+/* SECTION TITLE */
+
+.section-title{
+
+margin-bottom:25px;
+
+}
+
+
+.section-title h2{
+
+display:flex;
+
+align-items:center;
+
+gap:12px;
+
+font-size:26px;
+
+font-weight:800;
+
+color:white;
+
+}
+
+
+.section-title i{
+
+color:var(--cyan);
+
+text-shadow:
+
+0 0 15px var(--cyan);
+
+}
+
+
+
+/* ==========================================================
+   SYSTEM GRID
+========================================================== */
+
+
+.system-grid{
+
+display:grid;
+
+grid-template-columns:
+
+repeat(4,1fr);
+
+gap:25px;
+
+}
+
+
+
+/* SYSTEM CARD */
+
+.system-card{
+
+padding:25px;
+
+background:
+
+rgba(2,6,23,.55);
+
+border:
+
+1px solid rgba(0,247,255,.12);
+
+border-radius:18px;
+
+transition:.35s;
+
+}
+
+
+
+.system-card:hover{
+
+transform:translateY(-6px);
+
+border-color:var(--cyan);
+
+box-shadow:
+
+0 0 25px rgba(0,247,255,.18);
+
+}
+
+
+
+.system-card label{
+
+display:block;
+
+font-size:13px;
+
+color:#94A3B8;
+
+text-transform:uppercase;
+
+margin-bottom:10px;
+
+letter-spacing:1px;
+
+}
+
+
+.system-card p{
+
+font-size:17px;
+
+font-weight:700;
+
+word-break:break-word;
+
+}
+
+
+
+/* ==========================================================
+   SECURITY + THREAT GRID
+========================================================== */
+
+
+.security-grid{
+
+display:grid;
+
+grid-template-columns:
+
+repeat(2,1fr);
+
+gap:30px;
+
+margin-bottom:35px;
+
+}
+
+
+
+/* COMMON CARD */
+
+.security-card,
+.threat-card{
+
+padding:30px;
+
+background:
+
+rgba(15,23,42,.72);
+
+border:
+
+1px solid rgba(0,247,255,.15);
+
+border-radius:25px;
+
+backdrop-filter:blur(20px);
+
+box-shadow:
+
+0 0 30px rgba(0,247,255,.08);
+
+position:relative;
+
+overflow:hidden;
+
+}
+
+
+
+.security-card::before,
+.threat-card::before{
+
+content:"";
+
+position:absolute;
+
+top:0;
+
+left:0;
+
+width:100%;
+
+height:4px;
+
+background:
+
+linear-gradient(
+
+90deg,
+
+var(--cyan),
+
+var(--blue)
+
+);
+
+}
+
+
+
+/* ==========================================================
+   SECURITY WRAPPER
+========================================================== */
+
+
+.security-wrapper{
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+gap:40px;
+
+}
+
+
+
+/* SECURITY CIRCLE */
+
+.circle-gauge{
+
+width:170px;
+
+height:170px;
+
+border-radius:50%;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+background:
+
+conic-gradient(
+
+var(--green) 0deg 352deg,
+
+#1e293b 352deg
+
+);
+
+box-shadow:
+
+0 0 35px rgba(34,197,94,.35);
+
+}
+
+
+
+.circle-inner{
+
+width:125px;
+
+height:125px;
+
+border-radius:50%;
+
+background:#020617;
+
+display:flex;
+
+flex-direction:column;
+
+align-items:center;
+
+justify-content:center;
+
+}
+
+
+
+.circle-inner h1{
+
+font-size:38px;
+
+color:var(--green);
+
+}
+
+
+
+.circle-inner span{
+
+font-size:14px;
+
+font-weight:800;
+
+color:#94A3B8;
+
+}
+
+
+
+/* ==========================================================
+   SECURITY DETAILS
+========================================================== */
+
+
+.security-details{
+
+flex:1;
+
+}
+
+
+.status-row{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+padding:15px 0;
+
+border-bottom:
+
+1px solid rgba(255,255,255,.08);
+
+font-weight:600;
+
+}
+
+
+
+.success{
+
+color:var(--green);
+
+display:flex;
+
+align-items:center;
+
+gap:8px;
+
+font-size:14px;
+
+}
+
+
+
+/* ==========================================================
+   THREAT ANALYSIS
+========================================================== */
+
+
+.threat-center{
+
+text-align:center;
+
+margin:25px 0;
+
+}
+
+
+
+.threat-center h1{
+
+font-size:48px;
+
+font-weight:900;
+
+color:var(--green);
+
+text-shadow:
+
+0 0 25px rgba(34,197,94,.5);
+
+}
+
+
+
+.threat-center p{
+
+color:#94A3B8;
+
+margin-top:10px;
+
+}
+
+
+
+/* THREAT BAR */
+
+
+.threat-bar{
+
+height:15px;
+
+width:100%;
+
+background:#1e293b;
+
+border-radius:20px;
+
+overflow:hidden;
+
+}
+
+
+
+.threat-progress{
+
+height:100%;
+
+width:20%;
+
+background:
+
+linear-gradient(
+
+90deg,
+
+var(--green),
+
+var(--cyan)
+
+);
+
+border-radius:20px;
+
+animation:
+
+threatMove 3s infinite alternate;
+
+}
+
+
+
+/* THREAT STATS */
+
+
+.threat-stats{
+
+display:grid;
+
+grid-template-columns:
+
+repeat(3,1fr);
+
+gap:15px;
+
+margin-top:25px;
+
+text-align:center;
+
+}
+
+
+
+.threat-stats div{
+
+padding:18px;
+
+background:
+
+rgba(255,255,255,.04);
+
+border-radius:15px;
+
+}
+
+
+
+.threat-stats h3{
+
+font-size:28px;
+
+}
+
+
+
+.threat-stats small{
+
+color:#94A3B8;
+
+}
+
+
+/* ==========================================================
+   ANIMATIONS
+========================================================== */
+
+
+@keyframes threatMove{
+
+from{
+
+width:15%;
+
+}
+
+to{
+
+width:25%;
+
+}
+
+}
+
+
+/* ==========================================================
+   RESPONSIVE
+========================================================== */
+
+
+@media(max-width:1200px){
+
+
+.system-grid{
+
+grid-template-columns:
+
+repeat(2,1fr);
+
+}
+
+
+.security-grid{
+
+grid-template-columns:1fr;
+
+}
+
+
+}
+
+
+
+@media(max-width:700px){
+
+
+.system-grid{
+
+grid-template-columns:1fr;
+
+}
+
+
+.security-wrapper{
+
+flex-direction:column;
+
+}
+
+
+.threat-stats{
+
+grid-template-columns:1fr;
+
+}
+
+
+}
+
+/* ==========================================================
+   PART 3
+   TABLES • SUMMARY • FOOTER • FINAL RESPONSIVE
+========================================================== */
+
+
+/* ==========================================================
+   TABLE SECTIONS
+========================================================== */
+
+
+.table-card{
+
+margin-top:35px;
+
+padding:30px;
+
+background:
+
+rgba(15,23,42,.72);
+
+border:
+
+1px solid rgba(0,247,255,.15);
+
+border-radius:25px;
+
+backdrop-filter:blur(20px);
+
+box-shadow:
+
+0 0 30px rgba(0,247,255,.08);
+
+overflow:hidden;
+
+position:relative;
+
+}
+
+
+
+.table-card::before{
+
+content:"";
+
+position:absolute;
+
+top:0;
+
+left:0;
+
+height:4px;
+
+width:100%;
+
+background:
+
+linear-gradient(
+
+90deg,
+
+var(--cyan),
+
+var(--blue),
+
+var(--purple)
+
+);
+
+}
+
+
+
+/* ==========================================================
+   TABLE HEADER
+========================================================== */
+
+
+.table-header{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+margin-bottom:25px;
+
+}
+
+
+
+.table-header h2{
+
+display:flex;
+
+align-items:center;
+
+gap:12px;
+
+font-size:25px;
+
+}
+
+
+
+.table-header i{
+
+color:var(--cyan);
+
+}
+
+
+
+/* SEARCH BOX */
+
+
+.table-header input{
+
+width:250px;
+
+padding:12px 18px;
+
+border-radius:20px;
+
+outline:none;
+
+border:
+
+1px solid rgba(0,247,255,.25);
+
+background:
+
+rgba(2,6,23,.8);
+
+color:white;
+
+font-size:14px;
+
+transition:.3s;
+
+}
+
+
+
+.table-header input:focus{
+
+border-color:var(--cyan);
+
+box-shadow:
+
+0 0 20px rgba(0,247,255,.25);
+
+}
+
+
+
+/* ==========================================================
+   TABLE DESIGN
+========================================================== */
+
+
+.table-responsive{
+
+overflow-x:auto;
+
+}
+
+
+
+table{
+
+width:100%;
+
+border-collapse:collapse;
+
+}
+
+
+
+thead th{
+
+padding:16px;
+
+text-align:left;
+
+font-size:14px;
+
+text-transform:uppercase;
+
+letter-spacing:1px;
+
+background:
+
+linear-gradient(
+
+135deg,
+
+rgba(0,247,255,.18),
+
+rgba(37,99,235,.18)
+
+);
+
+color:white;
+
+}
+
+
+
+tbody td{
+
+padding:16px;
+
+border-bottom:
+
+1px solid rgba(255,255,255,.08);
+
+color:#CBD5E1;
+
+}
+
+
+
+tbody tr{
+
+transition:.3s;
+
+}
+
+
+
+tbody tr:hover{
+
+background:
+
+rgba(0,247,255,.08);
+
+transform:scale(1.01);
+
+}
+
+
+
+/* STATUS BADGE */
+
+
+.running{
+
+display:inline-flex;
+
+align-items:center;
+
+gap:8px;
+
+padding:6px 14px;
+
+border-radius:20px;
+
+background:
+
+rgba(34,197,94,.15);
+
+color:
+
+#22c55e;
+
+font-size:13px;
+
+font-weight:700;
+
+}
+
+
+
+/* ==========================================================
+   SUMMARY CARDS
+========================================================== */
+
+
+.summary-grid{
+
+display:grid;
+
+grid-template-columns:
+
+repeat(4,1fr);
+
+gap:25px;
+
+margin-top:35px;
+
+}
+
+
+
+.summary-card{
+
+padding:25px;
+
+text-align:center;
+
+background:
+
+rgba(15,23,42,.72);
+
+border:
+
+1px solid rgba(0,247,255,.15);
+
+border-radius:22px;
+
+transition:.35s;
+
+}
+
+
+
+.summary-card:hover{
+
+transform:
+
+translateY(-8px);
+
+border-color:
+
+var(--cyan);
+
+box-shadow:
+
+0 0 30px rgba(0,247,255,.25);
+
+}
+
+
+
+.summary-card i{
+
+font-size:35px;
+
+color:
+
+var(--cyan);
+
+margin-bottom:15px;
+
+text-shadow:
+
+0 0 20px var(--cyan);
+
+}
+
+
+
+.summary-card h3{
+
+font-size:22px;
+
+margin-bottom:8px;
+
+word-break:break-word;
+
+}
+
+
+
+.summary-card p{
+
+color:#94A3B8;
+
+}
+
+
+
+/* ==========================================================
+   FOOTER
+========================================================== */
+
+
+footer{
+
+margin-top:45px;
+
+padding:30px;
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+background:
+
+rgba(15,23,42,.6);
+
+border:
+
+1px solid rgba(0,247,255,.12);
+
+border-radius:25px;
+
+}
+
+
+
+.footer-left h3{
+
+color:
+
+var(--cyan);
+
+font-size:24px;
+
+display:flex;
+
+gap:10px;
+
+align-items:center;
+
+}
+
+
+
+.footer-left p,
+
+.footer-right p{
+
+color:#94A3B8;
+
+margin-top:8px;
+
+}
+
+
+
+.footer-right{
+
+text-align:right;
+
+}
+
+
+
+/* ==========================================================
+   ANIMATIONS
+========================================================== */
+
+
+@keyframes pulse{
+
+
+0%{
+
+opacity:1;
+
+transform:scale(1);
+
+}
+
+
+50%{
+
+opacity:.5;
+
+transform:scale(1.3);
+
+}
+
+
+100%{
+
+opacity:1;
+
+transform:scale(1);
+
+}
+
+
+}
+
+
+
+@keyframes fadeUp{
+
+
+from{
+
+opacity:0;
+
+transform:translateY(20px);
+
+}
+
+
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+
+}
+
+
+
+/* ==========================================================
+   GLOBAL CARD ANIMATION
+========================================================== */
+
+
+.hero-panel,
+.metric-card,
+.analytics-card,
+.system-section,
+.security-card,
+.threat-card,
+.table-card,
+.summary-card{
+
+animation:
+
+fadeUp .6s ease;
+
+}
+
+
+
+/* ==========================================================
+   RESPONSIVE DESIGN
+========================================================== */
+
+
+@media(max-width:1200px){
+
+
+.sidebar{
+
+width:220px;
+
+}
+
+
+.main{
+
+margin-left:250px;
+
+}
+
+
+.summary-grid{
+
+grid-template-columns:
+
+repeat(2,1fr);
+
+}
+
+
+
+}
+
+
+
+@media(max-width:900px){
+
+
+.sidebar{
+
+position:relative;
+
+width:auto;
+
+height:auto;
+
+margin:20px;
+
+}
+
+
+
+.main{
+
+margin-left:0;
+
+padding:20px;
+
+}
+
+
+
+.topbar{
+
+flex-direction:column;
+
+align-items:flex-start;
+
+gap:20px;
+
+}
+
+
+
+.hero-panel{
+
+grid-template-columns:1fr;
+
+}
+
+
+
+.metrics-grid{
+
+grid-template-columns:1fr;
+
+}
+
+
+
+.analytics-grid{
+
+grid-template-columns:1fr;
+
+}
+
+
+
+}
+
+
+
+@media(max-width:600px){
+
+
+.summary-grid{
+
+grid-template-columns:1fr;
+
+}
+
+
+
+.table-header{
+
+flex-direction:column;
+
+align-items:flex-start;
+
+gap:15px;
+
+}
+
+
+
+.table-header input{
+
+width:100%;
+
+}
+
+
+
+footer{
+
+flex-direction:column;
+
+text-align:center;
+
+gap:20px;
+
+}
+
+
+
+.footer-right{
+
+text-align:center;
+
+}
+
+
+
+}
+/* ==========================================
+   CONNECTED SYSTEMS PAGE
+========================================== */
+
+
+.page-header{
+
+margin-bottom:35px;
+
+}
+
+
+.page-header h1{
+
+font-size:34px;
+
+color:white;
+
+display:flex;
+
+gap:15px;
+
+align-items:center;
+
+}
+
+
+.page-header i{
+
+color:var(--cyan);
+
+}
+
+
+.page-header p{
+
+color:#94a3b8;
+
+margin-top:10px;
+
+}
+
+
+
+.machines-grid{
+
+display:grid;
+
+grid-template-columns:
+
+repeat(3,1fr);
+
+gap:30px;
+
+}
+
+
+
+.machine-card{
+
+background:
+
+rgba(15,23,42,.72);
+
+border:
+
+1px solid rgba(0,247,255,.15);
+
+border-radius:25px;
+
+padding:25px;
+
+backdrop-filter:blur(20px);
+
+transition:.35s;
+
+}
+
+
+
+.machine-card:hover{
+
+transform:translateY(-8px);
+
+border-color:var(--cyan);
+
+box-shadow:
+
+0 0 35px rgba(0,247,255,.25);
+
+}
+
+
+
+.machine-header{
+
+display:flex;
+
+align-items:center;
+
+gap:20px;
+
+margin-bottom:25px;
+
+}
+
+
+
+.device-icon{
+
+width:65px;
+
+height:65px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+border-radius:18px;
+
+background:
+
+rgba(0,247,255,.15);
+
+color:var(--cyan);
+
+font-size:28px;
+
+}
+
+
+
+.machine-header h2{
+
+font-size:22px;
+
+}
+
+
+
+.device-status{
+
+color:#22c55e;
+
+font-size:14px;
+
+}
+
+
+
+.machine-item{
+
+display:flex;
+
+gap:15px;
+
+align-items:center;
+
+padding:15px 0;
+
+border-bottom:
+
+1px solid rgba(255,255,255,.08);
+
+}
+
+
+
+.machine-item i{
+
+font-size:22px;
+
+color:var(--cyan);
+
+}
+
+
+
+.machine-item label{
+
+display:block;
+
+font-size:12px;
+
+color:#94a3b8;
+
+}
+
+
+
+.machine-item p{
+
+font-weight:700;
+
+margin-top:5px;
+
+}
+
+
+
+.machine-footer{
+
+margin-top:25px;
+
+}
+
+
+
+.machine-footer button{
+
+width:100%;
+
+padding:12px;
+
+border:none;
+
+border-radius:15px;
+
+background:
+
+linear-gradient(
+
+135deg,
+
+var(--cyan),
+
+var(--blue)
+
+);
+
+color:white;
+
+font-weight:700;
+
+cursor:pointer;
+
+}
+
+
+
+.empty-state{
+
+grid-column:1/-1;
+
+padding:50px;
+
+text-align:center;
+
+background:
+
+rgba(15,23,42,.7);
+
+border-radius:25px;
+
+}
+
+
+
+.empty-state i{
+
+font-size:60px;
+
+color:var(--cyan);
+
+margin-bottom:20px;
+
+}

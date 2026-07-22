@@ -1,0 +1,183 @@
+{% extends "layout.html" %}
+
+
+{% block content %}
+
+
+<div class="page-header">
+
+    <h1>
+        <i class="fa-solid fa-network-wired"></i>
+        Connected Systems
+    </h1>
+
+    <p>
+        Live monitoring of connected devices
+    </p>
+
+</div>
+
+
+
+<section class="machines-grid">
+
+
+{% if machines %}
+
+
+{% for pc in machines %}
+
+
+<div class="machine-card">
+
+
+<div class="machine-header">
+
+
+<div class="device-icon">
+
+<i class="fa-solid fa-desktop"></i>
+
+</div>
+
+
+<div>
+
+<h2>
+{{pc.name}}
+</h2>
+
+
+<span class="device-status">
+
+🟢 Online
+
+</span>
+
+</div>
+
+
+</div>
+
+
+
+<div class="machine-info">
+
+
+<div class="machine-item">
+
+<i class="fa-solid fa-globe"></i>
+
+<div>
+
+<label>
+IP Address
+</label>
+
+<p>
+{{pc.ip}}
+</p>
+
+</div>
+
+</div>
+
+
+
+<div class="machine-item">
+
+<i class="fa-solid fa-microchip"></i>
+
+<div>
+
+<label>
+CPU Usage
+</label>
+
+<p>
+{{pc.cpu}} %
+</p>
+
+</div>
+
+</div>
+
+
+
+
+<div class="machine-item">
+
+<i class="fa-solid fa-memory"></i>
+
+<div>
+
+<label>
+RAM Usage
+</label>
+
+<p>
+{{pc.ram}} %
+</p>
+
+</div>
+
+</div>
+
+
+
+</div>
+
+
+
+<div class="machine-footer">
+
+
+<button>
+
+<i class="fa-solid fa-chart-line"></i>
+
+View Details
+
+</button>
+
+
+</div>
+
+
+</div>
+
+
+{% endfor %}
+
+
+
+{% else %}
+
+
+<div class="empty-state">
+
+
+<i class="fa-solid fa-server"></i>
+
+
+<h2>
+No Connected Systems
+</h2>
+
+
+<p>
+Waiting for devices to connect...
+</p>
+
+
+</div>
+
+
+{% endif %}
+
+
+
+</section>
+
+
+{% endblock %}
